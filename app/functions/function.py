@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 db_url = "mysql+mysqlconnector://{USER}:{PWD}@{HOST}/{DBNAME}"
 
 db_url = db_url.format(
-    USER="root", PWD="password", HOST="localhost", DBNAME="predictive_modelling"
+    USER="root", PWD="password", HOST="172.172.130.30", DBNAME="predictive_modelling"
 )
 
 engine_global_prices = create_engine(db_url, echo=False)

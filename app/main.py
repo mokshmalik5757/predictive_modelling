@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 db_url = "mysql+mysqlconnector://{USER}:{PWD}@{HOST}/{DBNAME}"
 
 db_url = db_url.format(
-    USER="root", PWD="password", HOST="localhost", DBNAME="linear_regression"
+    USER="root", PWD="password", HOST="172.172.130.30", DBNAME="linear_regression"
 )
 
 engine = create_engine(db_url, echo=False)
@@ -210,4 +210,4 @@ def predict_view():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=8001)
