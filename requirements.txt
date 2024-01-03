@@ -3,4 +3,4 @@ SQLAlchemy
 plotly-express
 flask-cors
 prophet
-mysql
+mysql-connector-python
