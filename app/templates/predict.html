@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/predict.css">
+    <title>Trends</title>
+</head>
+
+<body>
+    <h1>
+        Predictive Modelling
+    </h1>
+
+    <form enctype="multipart/form-data" id="form" method="post">
+        <label for="year">Year (1973-2023) </label>
+        <input type="number" min="1973" max="2023" step="1" id="year" name="year" value="1973">
+
+        <label for="month">Month</label>
+        <select id="month" name="month">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <label for="commodity_name">Commodity Name</label>
+        <select name="commodity_name" id="commodity_name">
+            <option value="wheat">Wheat</option>
+            <option value="coffee">Coffee</option>
+            <option value="corn">Corn</option>
+        </select>
+        <button type="submit">Generate Charts</button>
+    </form>
+
+    <div id="loader" class="loader"></div>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('form');
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            var loader = document.getElementById('loader');
+            loader.style.display = 'block';
+
+            var formData = new FormData();
+            formData.append('year', document.getElementById('year').value);
+            formData.append('month', document.getElementById('month').value);
+            formData.append('commodity_name', document.getElementById('commodity_name').value);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/predict', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    loader.style.display = 'none';
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+
+                        if (response.plots) {
+                            var chartData = JSON.parse(response.plots.past_trend);
+                            var chartData_forecast = JSON.parse(response.plots.predict_forecast);
+
+                            var h2Trends = document.createElement('h2');
+                            h2Trends.innerHTML = "Past Trends";
+
+                            var chartContainer = document.createElement('div');
+                            chartContainer.id = "pastTrendsChart";
+
+                            var h2Forecast = document.createElement('h2');
+                            h2Forecast.innerHTML = "Forecast";
+                            var chartContainer_forecast = document.createElement('div');
+                            chartContainer_forecast.id = "forecastChart";
+
+                            document.body.appendChild(h2Trends);
+                            document.body.appendChild(chartContainer);
+                            document.body.appendChild(h2Forecast);
+                            document.body.appendChild(chartContainer_forecast);
+
+                            Plotly.newPlot(chartContainer, chartData.data, chartData.layout, { responsive: true });
+                            Plotly.newPlot(chartContainer_forecast, chartData_forecast.data, chartData_forecast.layout, { responsive: true });
+
+                        }
+
+                        window.scrollTo({
+                            top: document.body.scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        console.error('An error occurred:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+
+        form.addEventListener('submit', submitForm);
+    });
+
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+</html>

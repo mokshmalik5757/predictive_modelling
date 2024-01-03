@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Predictive Modelling</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/charts.css">
+
+</head>
+
+<body>
+    <h1>Predictive Modelling</h1>
+
+    <form id="chart-form" method="post" enctype="multipart/form-data">
+        <label for="start_date">Start Date</label>
+        <input type="date" id="start_date" name="start_date" value="2019-05-22" min="2019-05-22" required>
+        <br>
+
+        <label for="end_date">End Date</label>
+        <input type="date" id="end_date" name="end_date" value="2019-05-24" max="2021-10-14" required>
+        <br>
+
+        <label for="state">State</label>
+        <select name="state" id="state">
+            <option value="">--Please choose an option--</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Chattisgarh">Chhattisgarh</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="NCT of Delhi">NCT of Delhi</option>
+            <option value="Uttrakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+            <option value="Assam">Assam</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Pondicherry">Puducherry</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Andaman and Nicobar">Andaman and Nicobar</option>
+            <option value="Goa">Goa</option>
+        </select>
+        <br>
+
+        <label for="commodity_name">Commodity Name</label>
+        <select name="commodity_name" id="commodity_name">
+            <option value="">--Please choose an option--</option>
+            <option value="Ajwan">Ajwan</option>
+            <option value="Alasande+Gram">Alasande Gram</option>
+            <option value="Amaranthus">Amaranthus</option>
+            <option value="Amla(Nelli+Kai)">Amla (Nelli Kai)</option>
+            <option value="Amphophalus">Amphophalus</option>
+            <option value="Antawala">Antawala</option>
+            <option value="Apple">Apple</option>
+            <option value="Arhar+Dal(Tur+Dal)">Arhar Dal (Tur Dal)</option>
+            <option value="Ashgourd">Ashgourd</option>
+            <option value="Avare+Dal">Avare Dal</option>
+            <option value="Banana">Banana</option>
+            <option value="Banana+-+Green">Banana - Green</option>
+            <option value="Barley+(Jau)">Barley (Jau)</option>
+            <option value="Beans">Beans</option>
+            <option value="Beaten+Rice">Beaten Rice</option>
+            <option value="Beetroot">Beetroot</option>
+            <option value="Bitter+gourd">Bitter gourd</option>
+            <option value="Bottle+gourd">Bottle gourd</option>
+            <option value="Brinjal">Brinjal</option>
+            <option value="Broken+Rice">Broken Rice</option>
+            <option value="Cabbage">Cabbage</option>
+            <option value="Capsicum">Capsicum</option>
+            <option value="Carrot">Carrot</option>
+            <option value="Cashewnuts">Cashewnuts</option>
+            <option value="Castor+Seed">Castor Seed</option>
+            <option value="Cauliflower">Cauliflower</option>
+            <option value="Coconut">Coconut</option>
+            <option value="Chapparad+Avare">Chapparad Avare</option>
+            <option value="Chennangi+Dal">Chennangi Dal</option>
+            <option value="Chikoos(Sapota)">Chikoos (Sapota)</option>
+            <option value="Chili+Red">Chili Red</option>
+            <option value="Chilly+Capsicum">Chilly Capsicum</option>
+            <option value="Cluster+beans">Cluster beans</option>
+            <option value="Cocoa">Cocoa</option>
+            <option value="Coconut+Seed">Coconut Seed</option>
+            <option value="Coffee">Coffee</option>
+            <option value="Colacasia">Colacasia</option>
+            <option value="Copra">Copra</option>
+            <option value="Coriander(Leaves)">Coriander (Leaves)</option>
+            <option value="Corriander+seed">Corriander seed</option>
+            <option value="Cowpea(Veg)">Cowpea (Veg)</option>
+            <option value="Cotton">Cotton</option>
+            <option value="Cucumbar(Kheera)">Cucumbar (Kheera)</option>
+            <option value="Drumstick">Drumstick</option>
+            <option value="Dry+Chillies">Dry Chillies</option>
+            <option value="Dry+Fodder">Dry Fodder</option>
+            <option value="Dry+Grapes">Dry Grapes</option>
+            <option value="Duster+Beans">Duster Beans</option>
+            <option value="Egg">Egg</option>
+            <option value="Elephant+Yam+(Suran)">Elephant Yam (Suran)</option>
+            <option value="Field+Pea">Field Pea</option>
+            <option value="Firewood">Firewood</option>
+            <option value="Fish">Fish</option>
+            <option value="Garlic">Garlic</option>
+            <option value="Gingelly+Oil">Gingelly Oil</option>
+            <option value="Ginger(Dry)">Ginger (Dry)</option>
+            <option value="Ginger(Green)">Ginger (Green)</option>
+            <option value="Grapes">Grapes</option>
+            <option value="Green+Avare+(W)">Green Avare (W)</option>
+            <option value="Green+Chilli">Green Chilli</option>
+            <option value="Green+Fodder">Green Fodder</option>
+            <option value="Green+Peas">Green Peas</option>
+            <option value="Ground+Nut+Seed">Ground Nut Seed</option>
+            <option value="Groundnut">Groundnut</option>
+            <option value="Groundnut+(Split)">Groundnut (Split)</option>
+            <option value="Groundnut+pods+(raw)">Groundnut pods (raw)</option>
+            <option value="Guar">Guar</option>
+            <option value="Guava">Guava</option>
+            <option value="Gur(Jaggery)">Gur (Jaggery)</option>
+            <option value="Hybrid+Cumbu">Hybrid Cumbu</option>
+            <option value="Indian+Beans+(Seam)">Indian Beans (Seam)</option>
+            <option value="Isabgul+(Psyllium)">Isabgul (Psyllium)</option>
+            <option value="Jack+Fruit">Jack Fruit</option>
+            <option value="Jamun(Narale+Hannu)">Jamun (Narale Hannu)</option>
+            <option value="Jowar(Sorghum)">Jowar (Sorghum)</option>
+            <option value="Jute">Jute</option>
+            <option value="Karbuja(Musk+Melon)">Karbuja (Musk Melon)</option>
+            <option value="Knool+Khol">Knool Khol</option>
+            <option value="Kulthi(Horse+Gram)">Kulthi (Horse Gram)</option>
+            <option value="Lak(Teora)">Lak (Teora)</option>
+            <option value="Leafy+Vegetable">Leafy Vegetable</option>
+            <option value="Lemon">Lemon</option>
+            <option value="Lime">Lime</option>
+            <option value="Linseed">Linseed</option>
+            <option value="Litchi">Litchi</option>
+            <option value="Long+Melon(Kakri)">Long Melon (Kakri)</option>
+            <option value="Mahua">Mahua</option>
+            <option value="Maida+Atta">Maida Atta</option>
+            <option value="Maize">Maize</option>
+            <option value="Mango">Mango</option>
+            <option value="Mango+(Raw-Ripe)">Mango (Raw-Ripe)</option>
+            <option value="Masur+Dal">Masur Dal</option>
+            <option value="Methi+Seeds">Methi Seeds</option>
+            <option value="Methi(Leaves)">Methi (Leaves)</option>
+            <option value="Millets">Millets</option>
+            <option value="Mint(Pudina)">Mint (Pudina)</option>
+            <option value="Moath+Dal">Moath Dal</option>
+            <option value="Mousambi(Sweet+Lime)">Mousambi (Sweet Lime)</option>
+            <option value="Mustard">Mustard</option>
+            <option value="Mustard+Oil">Mustard Oil</option>
+            <option value="Myrobolan(Harad)">Myrobolan (Harad)</option>
+            <option value="Onion">Onion</option>
+            <option value="Onion+Green">Onion Green</option>
+            <option value="Orange">Orange</option>
+            <option value="Paddy(Dhan)(Basmati)">Paddy (Dhan) (Basmati)</option>
+            <option value="Paddy(Dhan)(Common)">Paddy (Dhan) (Common)</option>
+            <option value="Papaya">Papaya</option>
+            <option value="Papaya+(Raw)">Papaya (Raw)</option>
+            <option value="Peach">Peach</option>
+            <option value="Peas+cod">Peas cod</option>
+            <option value="Peas+Wet">Peas Wet</option>
+            <option value="Peas(Dry)">Peas (Dry)</option>
+            <option value="Pineapple">Pineapple</option>
+            <option value="Plum">Plum</option>
+            <option value="Pomegranate">Pomegranate</option>
+            <option value="Potato">Potato</option>
+            <option value="Pumpkin">Pumpkin</option>
+            <option value="Raddish">Raddish</option>
+            <option value="Ragi+(Finger+Millet)">Ragi (Finger Millet)</option>
+            <option value="Rajgir">Rajgir</option>
+            <option value="Rice">Rice</option>
+            <option value="Ridgeguard(Tori)">Ridgeguard (Tori)</option>
+            <option value="Round+gourd">Round gourd</option>
+            <option value="Safflower">Safflower</option>
+            <option value="Snakeguard">Snakeguard</option>
+            <option value="Soanf">Soanf</option>
+            <option value="Soyabean">Soyabean</option>
+            <option value="Spinach">Spinach</option>
+            <option value="Sponge+gourd">Sponge gourd</option>
+            <option value="Sugar">Sugar</option>
+            <option value="Sunflower">Sunflower</option>
+            <option value="Surat+Beans+(Papadi)">Surat Beans (Papadi)</option>
+            <option value="Suva+(Dill+Seed)">Suva (Dill Seed)</option>
+            <option value="Suvarna+Gadde">Suvarna Gadde</option>
+            <option value="Sweet+Potato">Sweet Potato</option>
+            <option value="Sweet+Pumpkin">Sweet Pumpkin</option>
+            <option value="T.V.+Cumbu">T.V. Cumbu</option>
+            <option value="Tamarind+Fruit">Tamarind Fruit</option>
+            <option value="Tapioca">Tapioca</option>
+            <option value="Taramira">Taramira</option>
+            <option value="Tender+Coconut">Tender Coconut</option>
+            <option value="Tinda">Tinda</option>
+            <option value="Tobacco">Tobacco</option>
+            <option value="Tomato">Tomato</option>
+            <option value="Toria">Toria</option>
+            <option value="Turmeric">Turmeric</option>
+            <option value="Turmeric+(raw)">Turmeric (raw)</option>
+            <option value="Turnip">Turnip</option>
+            <option value="Water+Melon">Water Melon</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Wheat+Atta">Wheat Atta</option>
+            <option value="White+Peas">White Peas</option>
+            <option value="White+Pumpkin">White Pumpkin</option>
+            <option value="Wood">Wood</option>
+            <option value="Yam+(Ratalu)">Yam (Ratalu)</option>
+            <option value="Bamboo">Bamboo</option>
+            <option value="Yam">Yam</option>
+            <option value="Kodo+Millet(Varagu)">Kodo Millet (Varagu)</option>
+            <option value="Goat">Goat</option>
+            <option value="Pear(Marasebu)">Pear (Marasebu)</option>
+            <option value="Balekai">Balekai</option>
+            <option value="Betal+Leaves">Betal Leaves</option>
+            <option value="Gram+Raw(Chholia)">Gram Raw (Chholia)</option>
+            <option value="Hen">Hen</option>
+            <option value="Same/Savi">Same/Savi</option>
+            <option value="Sugarcane">Sugarcane</option>
+            <option value="Sheep">Sheep</option>
+            <option value="Soji">Soji</option>
+            <option value="Chow+Chow">Chow Chow</option>
+            <option value="Pigs">Pigs</option>
+            <option value="Calf">Calf</option>
+            <option value="Cow">Cow</option>
+            <option value="Duck">Duck</option>
+            <option value="Dhaincha">Dhaincha</option>
+            <option value="Season+Leaves">Season Leaves</option>
+            <option value="Cock">Cock</option>
+            <option value="Tamarind+Seed">Tamarind Seed</option>
+            <option value="Other+Pulses">Other Pulses</option>
+            <option value="Coca">Coca</option>
+            <option value="Niger+Seed+(Ramtil)">Niger Seed (Ramtil)</option>
+            <option value="Ram">Ram</option>
+            <option value="Cummin+Seed(Jeera)">Cummin Seed (Jeera)</option>
+            <option value="Thondekai">Thondekai</option>
+            <option value="Galgal(Lemon)">Galgal (Lemon)</option>
+            <option value="Honge+seed">Honge seed</option>
+            <option value="Lotus+Sticks">Lotus Sticks</option>
+            <option value="Neem+Seed">Neem Seed</option>
+            <option value="Bran">Bran</option>
+            <option value="Cherry">Cherry</option>
+            <option value="Mashrooms">Mushrooms</option>
+            <option value="Kartali+(Kantola)">Kartali (Kantola)</option>
+            <option value="She+Goat">She Goat</option>
+            <option value="Alsandikai">Alsandikai</option>
+            <option value="Mahedi">Mahedi</option>
+            <option value="Thogrikai">Thogrikai</option>
+            <option value="Seetapal">Seetapal</option>
+            <option value="Rubber">Rubber</option>
+            <option value="Almond(Badam)">Almond (Badam)</option>
+            <option value="Butter">Butter</option>
+            <option value="Cardamoms">Cardamoms</option>
+            <option value="Kinnow">Kinnow</option>
+            <option value="He+Buffalo">He Buffalo</option>
+            <option value="Marigold(loose)">Marigold (loose)</option>
+            <option value="Mataki">Mataki</option>
+            <option value="Sajje">Sajje</option>
+            <option value="Black+pepper">Black pepper</option>
+            <option value="Marigold(Calcutta)">Marigold (Calcutta)</option>
+            <option value="Ambada+Seed">Ambada Seed</option>
+            <option value="Chrysanthemum(Loose)">Chrysanthemum (Loose)</option>
+            <option value="Cotton+Seed">Cotton Seed</option>
+            <option value="Seemebadnekai">Seemebadnekai</option>
+            <option value="Gramflour">Gramflour</option>
+            <option value="Persimon(Japani+Fal)">Persimon (Japani Fal)</option>
+            <option value="Pepper+ungarbled">Pepper ungarbled</option>
+            <option value="Indian+Colza(Sarson)">Indian Colza (Sarson)</option>
+            <option value="Sabu+Dan">Sabu Dan</option>
+            <option value="Gurellu">Gurellu</option>
+            <option value="Nutmeg">Nutmeg</option>
+            <option value="Lint">Lint</option>
+            <option value="Rose(Loose)">Rose (Loose)</option>
+            <option value="Bunch+Beans">Bunch Beans</option>
+            <option value="Hippe+Seed">Hippe Seed</option>
+            <option value="Snake+gourd">Snake gourd</option>
+            <option value="Ridge+gourd(Tori)">Ridge gourd (Tori)</option>
+            <option value="Sabu+Dana">Sabu Dana</option>
+            <option value="Tube+Rose(Loose)">Tube Rose (Loose)</option>
+            <option value="Rose(Local)">Rose (Local)</option>
+            <option value="Seetafal">Seetafal</option>
+            <option value="Siddota">Siddota</option>
+            <option value="Lukad">Lukad</option>
+            <option value="Sunhemp">Sunhemp</option>
+            <option value="Coconut+Oil">Coconut Oil</option>
+            <option value="Ghee">Ghee</option>
+            <option value="Anthorium">Anthorium</option>
+        </select>
+        <button type="submit">Generate Charts</button>
+    </form>
+
+    <div id="loader" class="loader"></div>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('chart-form');
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            var loader = document.getElementById('loader');
+            loader.style.display = 'block';
+
+            var formData = new FormData();
+            formData.append('start_date', document.getElementById('start_date').value);
+            formData.append('end_date', document.getElementById('end_date').value);
+            formData.append('commodity_name', document.getElementById('commodity_name').value);
+            formData.append('state', document.getElementById('state').value);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/charts', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    loader.style.display = 'none';
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.commodity_name_chart_json) {
+
+                            var h2Trends = document.createElement('h2');
+                            h2Trends.innerHTML = "Past Trends";
+
+                            var chartData = JSON.parse(response.commodity_name_chart_json);
+                            var chartContainer = document.createElement('div');
+                            chartContainer.id = "commodity-name-chart";
+
+                            document.body.appendChild(h2Trends);
+                            document.body.appendChild(chartContainer);
+
+                            Plotly.newPlot(chartContainer, chartData.data, chartData.layout, { responsive: true });
+                        }
+
+                        if (response.state_chart_json) {
+
+                            var h2Trends = document.createElement('h2');
+                            h2Trends.innerHTML = "Past Trends";
+
+                            var chartData = JSON.parse(response.state_chart_json);
+                            var chartContainer = document.createElement('div');
+                            chartContainer.id = "state-chart";
+
+                            document.body.appendChild(h2Trends);
+                            document.body.appendChild(chartContainer);
+                            
+                            Plotly.newPlot(chartContainer, chartData.data, chartData.layout, { responsive: true });
+                        }
+
+                        if (response.not_state_not_commodity_json) {
+                            
+                            var h2Trends = document.createElement('h2');
+                            h2Trends.innerHTML = "Past Trends";
+                            
+                            var chartData_hist = JSON.parse(response.not_state_not_commodity_json.fig_hist);
+                            var chartData_box = JSON.parse(response.not_state_not_commodity_json.fig_box);
+
+                            var chartContainer_hist = document.createElement('div');
+                            chartContainer_hist.id = "state_commodity_chart_hist";
+
+                            var chartContainer_box = document.createElement('div');
+                            chartContainer_box.id = "state_commodity_chart_box";
+
+                            document.body.appendChild(h2Trends);
+                            document.body.appendChild(chartContainer_box);
+                            document.body.appendChild(chartContainer_hist);
+
+                            Plotly.newPlot(chartContainer_hist, chartData_hist.data, chartData_hist.layout, { responsive: true });
+                            Plotly.newPlot(chartContainer_box, chartData_box.data, chartData_box.layout, { responsive: true });
+                        }
+
+                        if (response.state_commodity_json) {
+                            var chartData_scatter = JSON.parse(response.state_commodity_json.fig_scatter);
+                            var chartData_bar = JSON.parse(response.state_commodity_json.fig_bar);
+                            var chartData_line = JSON.parse(response.state_commodity_json.fig_line);
+                            var chartData_forecast = JSON.parse(response.state_commodity_json.fig_forecast);
+
+                            var h2Trends = document.createElement('h2');
+                            h2Trends.innerHTML = "Past Trends";
+
+                            var chartContainer_scatter = document.createElement('div');
+                            chartContainer_scatter.id = "state_commodity_chart_scatter";
+
+                            var chartContainer_bar = document.createElement('div');
+                            chartContainer_bar.id = "state_commodity_chart_bar";
+
+                            var chartContainer_line = document.createElement('div');
+                            chartContainer_line.id = "state_commodity_chart_line";
+
+                            var h2Forecast = document.createElement('h2');
+                            h2Forecast.innerHTML = "Forecast";
+                            var chartContainer_forecast = document.createElement('div');
+                            chartContainer_forecast.id = "state_commodity_chart_forecast";
+
+                            document.body.appendChild(h2Trends);
+                            document.body.appendChild(chartContainer_bar);
+                            document.body.appendChild(chartContainer_scatter);
+                            document.body.appendChild(chartContainer_line);
+                            document.body.appendChild(h2Forecast);
+                            document.body.appendChild(chartContainer_forecast);
+
+                            Plotly.newPlot(chartContainer_scatter, chartData_scatter.data, chartData_scatter.layout, { responsive: true });
+                            Plotly.newPlot(chartContainer_bar, chartData_bar.data, chartData_bar.layout, { responsive: true });
+                            Plotly.newPlot(chartContainer_line, chartData_line.data, chartData_line.layout, { responsive: true });
+                            Plotly.newPlot(chartContainer_forecast, chartData_forecast.data, chartData_forecast.layout, { responsive: true });
+
+                        }
+
+                        window.scrollTo({
+                            top: document.body.scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        console.error('An error occurred:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+
+        form.addEventListener('submit', submitForm);
+    });
+
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+</html>
